@@ -1,0 +1,85 @@
+import java.util.Scanner;
+
+public class Start {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		System.out.println("¡Bienvenido a OPOTEST!");
+		
+		int puntajeTotal = 0;
+		
+		// Ejemplo de pregunta con 3 opciones
+		puntajeTotal += hacerPregunta("¿Cual es la capital de Francia?",
+				new String[] {"Madrid", "Paris", "Londres"}, 2);
+		
+		puntajeTotal += hacerPregunta("¿Cuál es la capital de Italia?", 
+				new String[] { "Roma", "Atenas", "Berlin"}, 1);
+		
+		puntajeTotal += hacerPregunta("¿En qué continente se encuentra Australia?", 
+				new String[] { "Asia", "Oceanía", "Europa"}, 2);
+
+		puntajeTotal += hacerPregunta("¿Cuál es el río más largo del mundo?", 
+				new String[] { "Nilo", "Amazonas", "Misisipi"}, 2);
+		
+		puntajeTotal += hacerPregunta("¿En qué año se descubrió América?", 
+				new String[] {"1492", "1776", "1812"}, 1);
+
+		puntajeTotal += hacerPregunta("¿Cuál es el elemento más abundante en la corteza terrestre?", 
+				new String[] {"Oxígeno", "Silicio", "Aluminio"}, 2);
+		
+		puntajeTotal += hacerPregunta("¿Quién escribió 'Don Quijote de la Mancha'?", 
+				new String[] {"Miguel de Cervantes", "Gabriel García Márquez", "Federico García Lorca"}, 1);
+		
+		puntajeTotal += hacerPregunta("¿En qué año se celebró la independencia de Estados Unidos?", 
+				new String[] {"1812", "1789", "1776"}, 3);
+		
+		
+		System.out.println("¡Has termiando! Tu puntuaje ha sido: " + puntajeTotal);
+
+	}
+	// Método para hacer una pregunta con 3 opciones y verificar la respuesta
+	public static int hacerPregunta(String pregunta, String[] opciones, int respuestaCorrecta) {
+		
+		System.out.println(pregunta);
+		// Mostrar las opciones.
+		for (int i = 0; i < opciones.length; i++) {
+			System.out.println((i + 1 ) + ". " + opciones[i]);
+		}
+		
+		Scanner sc = new Scanner(System.in);
+		
+		int respuestaUsuario;
+		
+		try {
+			
+			// Leemos la respuesta como entero
+			respuestaUsuario = sc.nextInt();
+			sc.nextLine();
+			
+			// Verificamos si la respuesta del usuario es correcta
+			if(respuestaUsuario > 0 && respuestaUsuario <= opciones.length) {
+				
+				if(respuestaUsuario == respuestaCorrecta) {
+					
+					System.out.println("¡Correcto!");
+					return 1;
+				} else {
+					
+					System.out.println("Incorrecto. la respuesta correcta es: "+ opciones[respuestaCorrecta - 1]);
+				}
+				
+			} else {
+				
+				System.out.println("Opción no válida");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("Por favor, introduce un número válido");
+		}
+		
+		// No sumar puntuaje incorrecto.
+		return 0;
+	}
+
+}
